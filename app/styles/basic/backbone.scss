@@ -1,0 +1,383 @@
+// @import "susy";
+
+// $susy: (
+// 	// max width
+// 	container: 50rem,
+// 	columns: 16,
+// 	// gutter: .25,
+// 	// output: isolate
+// 	global-box-sizing: border-box
+// );
+
+// .wrap {
+// 	@include container;
+// }
+// .module {
+// 	@include span(6);
+// 	background: $gray;
+
+// 	&:nth-of-type(2n) {
+// 		float: right;
+// 	}
+// }
+
+.wrap {
+	max-width: 1200px;
+	clear: both;
+	margin: 0 auto;
+
+	// width: auto;
+	padding: 1rem;
+
+	h1 {
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+	p {
+		text-align: center;
+	}
+
+	// @include respond(600px) {
+	// 	margin: 1rem 1rem 0;
+	// }
+}
+.box {
+	width: 47.5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	padding: 1.5rem;
+	float: left;
+	// background: $gray;
+	@include border-radius(5px);
+	border: 1px solid $gray;
+	@include border-box;
+
+	@include respond(600px) {
+		width: auto;
+		padding: 1rem;
+		margin: 0 0 1rem;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 0.5rem;
+	}
+	p {
+		margin: 0.5rem 0;
+	}
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+
+	&:nth-of-type(2n) {
+		// float: right;
+		margin-right: 0;
+
+		@include respond(600px) {
+			margin: 0 0 1rem;
+		}
+	}
+
+	&.full {
+		width: 100%;
+		margin-right: 0%;
+		margin-bottom: 5%;
+	}
+
+	&.half {
+		width: 47.5%;
+		margin-right: 5%;
+
+		&:nth-of-type(2) {
+			margin-right: 0;
+		}
+	}
+	&.third {
+		width: 30%;
+		margin-right: 5%;
+
+		&:nth-of-type(3) {
+			margin-right: 0;
+		}
+	}
+
+	// &:last-of-type {
+	// 	margin-bottom: 0;
+
+	// 	@include respond(600px) {
+	// 		margin-bottom: 0;
+	// 	}
+	// }
+
+	// .option {
+	// 	background: $white;
+	// 	@include border-radius(3px);
+	// 	padding: 0.75rem 1rem;
+	// 	display: inline-block;
+	// 	cursor: pointer;
+
+	// 	&:hover {
+	// 		background: lighten($green, 50);
+	// 	}
+	// 	&:active {
+	// 		background: $green;
+	// 		color: $white;
+	// 	}
+	// }
+}
+
+
+ul.deck {
+
+	@include plainul;
+
+	@include border-radius(5px);
+	border: 1px solid $gray;
+	@include border-box;
+
+	li {
+		// border-bottom: 1px solid $gray;
+		padding: 0.5rem;
+		// min-height: 2.25rem;
+
+		&:nth-of-type(odd) {
+			background: lighten($gray,8);
+		}
+
+		&:nth-of-type(even) {
+			
+		}
+
+		&:last-of-type {
+			border-bottom: 0;
+		}
+
+		@include clear-after;
+	}
+}
+
+ul.deck.manage-questions {
+
+	// @include plainul;
+
+	// @include border-radius(5px);
+	// border: 1px solid $gray;
+	// @include border-box;
+
+	li {
+		// padding: 0.5rem;
+
+		// &:nth-of-type(odd) {
+		// 	background: lighten($gray,8);
+		// }
+
+		&:nth-of-type(even) {
+			input {
+				background: lighten($gray,8);
+			}
+		}
+
+		// &:last-of-type {
+		// 	border-bottom: 0;
+		// }
+
+		// @include clear-after;
+
+		.unedited-question {
+
+		}
+		.edit-question {
+			display: none;
+		}
+
+		label.number {
+			// width: 2%;
+			// padding: 0 0.5rem 0 0.7rem;
+			display: inline-block;
+			float: left;
+			text-align: center;
+
+			padding: 0.3rem 0.5rem;
+			display: none;
+
+			// @include respond(460px) {
+			// 	width: 3%;
+			// }
+
+			// margin: 5px 5px 5px 0;
+			// padding: 0 10px 0 10px;
+		}
+		.question {
+			width: 80%;
+			padding-left: 6%;
+			display: inline-block;
+			// margin: 0;
+			float: left;
+
+			padding: 0.3rem 0.5rem;
+			@include border-box;
+			// border-left: 1px solid $gray;
+
+			@include respond(460px) {
+				width: 70%;
+			}
+		}
+		.edit, .delete {
+			// width: 3%;
+			display: inline-block;
+			float: right;
+
+			padding: 0.4rem 0.7rem 0.25rem;
+			@include border-radius(5px);
+			// border-left: 1px solid $gray;
+
+			font-weight: 600;
+
+			&:hover {
+				// @include border-radius(5px);
+				background: $green;
+				color: $white;
+			}
+		}
+
+		input {
+			// clear: left;
+			float: left;
+			max-width: 50%;
+			font-size: 0.95rem;
+			font-weight: 300;
+			border: 0;
+			padding: 0.5rem;
+			@include border-radius(3px);
+		    margin-top: 0.25rem;
+
+			color: darken($gray,23);
+
+			&:focus {
+				outline: none;
+				color: $black;
+			}
+		}
+		.save {
+			@include default-button;
+			padding: 0.15rem 0.5rem 0.1rem;
+			clear: none;
+			float: left;
+			margin-left: 0.5rem;
+			margin-top: 0.25rem;
+
+			@include respond(600px) {
+				clear: left;
+				float: left;
+				margin-left: 26px;
+				margin-top: 0.5rem;
+			}
+		}
+		.delete {
+			// display: none;
+			color: $red;
+			float: right;
+		}
+		// .rearrange {
+
+		// }
+	}
+}
+
+.authenticate-box {
+	width: 250px;
+	margin: 0 auto;
+
+	input {
+		
+		border: 1px solid lighten($gray, 0);
+		@include border-radius(3px);
+		font-size: 1rem;
+		padding: 0.75rem 1rem;
+		display: block;
+		margin-bottom: 1rem;
+		width: 100%;
+		@include border-box;
+
+		&:focus {
+			outline: none;
+		}
+	}
+	button {
+		@extend button.button-full;
+	}
+	button.previous {
+		margin-right: 1rem;
+	}
+}
+
+
+button.button-full {
+	@include default-button;
+	@include border-box;
+	width: 100%;
+	display: inline-block;
+}
+button.button-center {
+	@include default-button;
+	width: auto;
+	margin: 0 auto;
+	display: block;
+	// display: inline-block;
+}
+button.button-left {
+	@include default-button;
+	// width: auto;
+	float: left;
+	display: inline-block;
+}
+button.button-right {
+	@include default-button;
+	float: right;
+	display: inline-block;
+}
+button.button-second-option {
+	@include default-button;
+	background: $gray;
+	// border: 2px solid $gray;
+	// color: $gray;
+
+	&:hover {
+		background: darken($gray,5);
+	}
+}
+
+
+.category-long-answers {
+	// background: $gray;
+	// padding: 1rem;
+	// margin-bottom: 3rem;
+	// @include border-radius(3px);
+}
+
+
+.module {
+
+}
+
+.clearl {
+	clear: left;
+}
+.clearr {
+	clear: right;
+}
+.clearb {
+	clear: both;
+}
+
+a.button {
+	@include default-button;
+	display: inline-block;
+	clear: both;
+	margin: 1rem 0 0 0;
+}

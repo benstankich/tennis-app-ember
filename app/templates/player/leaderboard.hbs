@@ -1,0 +1,18 @@
+<h1>Leaderboard</h1>
+
+<div class="leaderboard">
+	{{ember-chart type='bar' data=points width=1000 height=600}}
+</div>
+
+<table class="standard-wrapper">
+	<tr>
+		<th>Player</th>
+		<th>Points</th>
+	</tr>
+{{#each sortedPlayers as |player|}}
+	<tr>
+		<td>{{player.first_name}} {{player.last_name}}</td>
+		<td>{{player.points}}</td>
+	</tr>
+{{/each}}
+</table>

@@ -1,0 +1,12 @@
+{{#each model as |coach|}}
+	<div class="player-card">
+		{{!-- <img src="http://via.placeholder.com/200x200?text=Placeholder" alt=""><br> --}}
+		<h2>{{coach.first_name}} {{coach.last_name}}</h2>
+		<ul>
+			{{!-- <li><span>ID: </span>{{coach.id}}</li> --}}
+			{{!-- <li><span>User type: </span>Player</li> --}}
+			<li><span>Email: </span>{{coach.email}}</li>
+			<li><span>Phone: </span>{{coach.phone}}</li>
+		</ul>
+	</div>
+{{/each}}

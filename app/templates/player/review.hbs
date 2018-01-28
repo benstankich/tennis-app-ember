@@ -1,0 +1,132 @@
+<div class="question-wrapper">
+	{{!-- {{#each model.player as |player|}}
+		<div class="player-card">
+			<h2>{{player.first_name}} {{player.last_name}}</h2>
+			<ul>
+				<li><span>Email: </span>{{player.email}}</li>
+				<li><span>Phone: </span>{{player.phone}}</li>
+				<li><span>Gender: </span>{{#if (eq player.gender 1)}}Male{{else}}Female{{/if}}</li>
+				<li><span>Points: </span>{{player.points}}</li>
+				<li><span>Age: </span>{{player.age}}</li>
+				<li><span>Coach: </span>{{player.coach_id.first_name}} {{player.coach_id.last_name}}</li>
+			</ul>
+		</div>
+		<div id="data-player-id" style="display:none;" data-player-id="{{player.id}}"></div>
+	{{/each}}
+
+	<br><br> --}}
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<style>
+		.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+			background: #0db745;
+			border-color: #0db745;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script>
+		$(".selector").flatpickr();
+		function getSelectedDate() {
+			var selectedDate = $('.flatpickr-input').val();
+			return $('.flatpickr-input').val();
+		}
+	</script>
+
+	<h2 class="center" id="answer-date-header">Today's Answers</h2>
+
+	
+	<div class="select-a-date">
+		<span>Select a date</span>
+		{{ember-flatpickr
+		  date="today"
+		  onChange=(action "today")
+		  placeholder='Choose a Date'
+		  dateFormat="Y-m-d"
+		}}
+	</div>
+
+	<h3>Mental</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 1)}}
+				{{#each question.answer as |answer|}}
+					<div class="answer-day day-{{parse-date answer.created_at}}">
+						<div class="question">{{question.question_text}}</div>
+						<div class="answer">{{answer.answer}}</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<h3>Emotional</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 2)}}
+				{{#each question.answer as |answer|}}
+					<div class="answer-day day-{{parse-date answer.created_at}}">
+						<div class="question">{{question.question_text}}</div>
+						<div class="answer">{{answer.answer}}</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<h3>Physical</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 3)}}
+				{{#each question.answer as |answer|}}
+					<div class="answer-day day-{{parse-date answer.created_at}}">
+						<div class="question">{{question.question_text}}</div>
+						<div class="answer">{{answer.answer}}</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<h3>Training</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 4)}}
+				{{#each question.answer as |answer|}}
+					<div class="answer-day day-{{parse-date answer.created_at}}">
+						<div class="question">{{question.question_text}}</div>
+						<div class="answer">{{answer.answer}}</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<h3>Competition</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 5)}}
+				{{#each question.answer as |answer|}}
+					<div class="answer-day day-{{parse-date answer.created_at}}">
+						<div class="question">{{question.question_text}}</div>
+						<div class="answer">{{answer.answer}}</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<h3>Social</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 6)}}
+				{{#each question.answer as |answer|}}
+					<div class="answer-day day-{{parse-date answer.created_at}}">
+						<div class="question">{{question.question_text}}</div>
+						<div class="answer">{{answer.answer}}</div>
+					</div>
+				{{/each}}
+			{{/if}}
+		{{/each}}
+	</div>
+</div>
+{{!-- {{outlet}} --}}

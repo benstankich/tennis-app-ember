@@ -1,0 +1,14 @@
+<li class="question1-{{index}}" id="test" style="display:list-item;">
+    <div class="unedited-question" style="display: block;">
+        <a class="edit" href="javascript:void();" onclick="editQuestion('question1-{{index}}');">Edit</a>
+        <label class="number">{{index}}</label>
+        <div class="question">{{question.question_text}}</div>
+    </div>
+
+    <div class="edit-question" style="display: none;">
+        <a class="delete" href="javascript:void();" onclick="">Delete</a>
+        <label class="number">{{index}}</label>
+        <input class="question" type="text" size="200" value="{{question.question_text}}">
+        <a class="save" href="javascript:void();" onclick="">Save</a>
+    </div>
+</li>

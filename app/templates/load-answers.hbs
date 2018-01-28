@@ -1,0 +1,27 @@
+<h2>This is our load-answers route</h2>
+{{outlet}}
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>answer</th>
+		<th>user id</th>
+		<th>user name</th>
+		<th>question_id</th>
+		<th>points</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+	</tr>
+	{{#each model as |answer|}}
+		<tr>
+			<td>{{answer.id}}</td>
+			<td>{{answer.answer}}</td>
+			<td>{{answer.user_id.id}}</td>
+			<td>{{answer.user_id.first_name}} {{answer.user_id.last_name}}</td>
+			<td>{{answer.question_id.id}}</td>
+			<td>{{answer.points}}</td>
+			<td>{{answer.created_at}}</td>
+			<td>{{answer.updated_at}}</td>
+		</tr>
+	{{/each}}
+</table>

@@ -1,0 +1,40 @@
+<h1>Sign up</h1>
+
+{{!-- <form {{action '/coach/manage' on='submit'}} class="authenticate-box"> --}}
+<form {{action 'authenticate' on='submit'}} class="authenticate-box">
+  {{!-- <label for="identification">Email</label> --}}
+
+  {{input id='first_name' placeholder='First Name' value=player.first_name}}
+  {{input id='last_name' placeholder='Last Name' value=player.last_name}}
+  {{input id='email' placeholder='Email' value=identification}}
+  {{input id='phone' placeholder='Phone Number' value=player.phone}}
+  {{input id='password' placeholder='Password' type='password' value=password}}
+  {{input id='password_confirmation' placeholder='Confirm Password' type='password' value=player.password_confirmation}}
+
+  {{input id='age' placeholder='Age' type='age' value=player.age}}
+
+  <input type="radio" id="gender-1" name="gender" value="1"> Male<br>
+  <input type="radio" id="gender-2" name="gender" value="2"> Female<br><br>
+  {{!-- {{radio-button value='1' checked=player.gender}} Male<br>
+  {{radio-button value='2' checked=player.gender}} Female<br><br> --}}
+
+  <label for="coach">Your assigned coach</label><br>
+  <select name="coach" id="coach_id">
+  	{{#each model as |coach|}}
+		<option value={{coach.id}} label="{{coach.first_name}} {{coach.last_name}}">{{coach.id}}</option>
+	{{/each}}
+  </select>
+
+  <br>
+  <br>
+  {{!-- <button type="submit" {{action "createPlayer"}}>Sign up</button> --}}
+  <button type="submit">Sign up</button>
+</form>
+
+<div class="panel panel-danger">  
+{{#each model.errors.name as |error|}}
+  {{error.message}}
+{{/each}}
+</div>  
+
+{{!-- {{action 'authenticate' on='submit'}} --}}

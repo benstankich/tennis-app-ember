@@ -1,0 +1,65 @@
+<h2>This is our load-players route</h2>
+{{outlet}}
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>first_name</th>
+		<th>last_name</th>
+		<th>email</th>
+		<th>phone</th>
+		<th>password</th>
+		<th>password_confirmation</th>
+		<th>gender</th>
+		<th>points</th>
+		<th>age</th>
+		<th>coach_id</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+		<th>age_range</th>
+		{{!-- <th>Answers</th> --}}
+	</tr>
+	{{!-- https://guides.emberjs.com/v2.16.0/templates/displaying-the-keys-in-an-object/ --}}
+	{{#each model as |player|}}
+		<tr>
+			<td>{{player.id}}</td>
+			<td>{{player.first_name}}</td>
+			<td>{{player.last_name}}</td>
+			<td>{{player.email}}</td>
+			<td>{{player.phone}}</td>
+			<td>{{player.password}}</td>
+			<td>{{player.password_confirmation}}</td>
+			<td>{{player.gender}}</td>
+			<td>{{player.points}}</td>
+			<td>{{player.age}}</td>
+			<td>{{player.coach_id}}</td>
+			<td>{{player.created_at}}</td>
+			<td>{{player.updated_at}}</td>
+			<td>{{player.age_range}}</td>
+			{{!-- <td><ul>Answer:
+			{{#each model as |answer|}}
+				<li>{{answer.answer}}</li>
+			{{/each}}
+			</ul></td> --}}
+		</tr>
+	{{/each}}
+	{{!-- {{#each-in model as |player answer|}}
+		<tr>
+			<td>{{player.id}}</td>
+			<td>{{player.first_name}}</td>
+			<td>{{player.last_name}}</td>
+			<td>{{player.email}}</td>
+			<td>{{player.phone}}</td>
+			<td>{{player.password}}</td>
+			<td>{{player.password_confirmation}}</td>
+			<td>{{player.gender}}</td>
+			<td>{{player.points}}</td>
+			<td>{{player.age}}</td>
+			<td>{{player.coach_id}}</td>
+			<td>{{player.created_at}}</td>
+			<td>{{player.updated_at}}</td>
+			<td>{{player.age_range}}</td>
+			<td></td>
+		</tr>
+	{{/each-in}} --}}
+</table>

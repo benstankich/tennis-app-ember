@@ -1,0 +1,202 @@
+{{!-- <h1>My Players</h1> --}}
+{{!-- <table>
+	<tr>
+		<th>Player</th>
+		<th>Last Answered</th>
+	</tr>
+{{#each model.player as |player|}}
+	<tr>
+		<td><a href="player/{{player.id}}">{{player.first_name}} {{player.last_name}}</a></td>
+		<td>?</td>
+	</tr>
+{{/each}}
+</table> --}}
+
+{{!-- <br><br><br> --}}
+<h1>Today's Answers</h1>
+
+{{!-- {{ember-flatpickr
+	date=(readonly "11/27/2017")
+	onChange=(action (mut dateValues))
+	dateFormat="m/d/Y"}} --}}
+
+{{!-- {{date-range-picker
+  label='Optional label'
+  start="20150101"
+  end="20151231"
+  applyAction=(action "setDateRange")
+  hideAction=(action "hideDatePicker")
+  cancelAction=(action "cancelDatePicker")
+}} --}}
+
+<div class="standard-wrapper">
+
+	<div class="category-long-answers">
+		<h2>Mental</h2>
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 1)}}
+				<h3>{{question.question_text}}</h3>
+				<table>
+				<tr>
+					<th>Player</th>
+					<th>Answer</th>
+					{{!-- <th>Date</th> --}}
+				</tr>
+					{{#each question.answer as |answer|}}
+						{{!-- Answer: {{answer.question_id}}<br>
+						Question: {{question.id}} --}}
+						{{!-- {{#if (eq answer.day )}} --}}
+							<tr>
+								<td><a href="player/{{answer.user_id.id}}">{{answer.user_id.first_name}} {{answer.user_id.last_name}}</a></td>
+								<td>{{answer.answer}}</td>
+								{{!-- <td>{{answer.updated_at}}</td> --}}
+							</tr>
+						{{!-- {{/if}} --}}
+					{{/each}}
+				</table>
+				<br><br>
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<div class="category-long-answers">
+		<h2>Emotional</h2>
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 2)}}
+				<h3>{{question.question_text}}</h3>
+				<table>
+				<tr>
+					<th>Player</th>
+					<th>Answer</th>
+					{{!-- <th>Date</th> --}}
+				</tr>
+					{{#each question.answer as |answer|}}
+						{{!-- Answer: {{answer.question_id}}<br>
+						Question: {{question.id}}
+						{{#if (eq answer.question_id question.id)}} --}}
+							<tr>
+								<td><a href="player/{{answer.user_id.id}}">{{answer.user_id.first_name}} {{answer.user_id.last_name}}</a></td>
+								<td>{{answer.answer}}</td>
+								{{!-- <td>{{answer.updated_at}}</td> --}}
+							</tr>
+						{{!-- {{/if}} --}}
+					{{/each}}
+				</table>
+				<br><br>
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<div class="category-long-answers">
+		<h2>Physical</h2>
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 3)}}
+				<h3>{{question.question_text}}</h3>
+				<table>
+				<tr>
+					<th>Player</th>
+					<th>Answer</th>
+					{{!-- <th>Date</th> --}}
+				</tr>
+					{{#each question.answer as |answer|}}
+						{{!-- Answer: {{answer.question_id}}<br>
+						Question: {{question.id}}
+						{{#if (eq answer.question_id question.id)}} --}}
+							<tr>
+								<td><a href="player/{{answer.user_id.id}}">{{answer.user_id.first_name}} {{answer.user_id.last_name}}</a></td>
+								<td>{{answer.answer}}</td>
+								{{!-- <td>{{answer.updated_at}}</td> --}}
+							</tr>
+						{{!-- {{/if}} --}}
+					{{/each}}
+				</table>
+				<br><br>
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<div class="category-long-answers">
+		<h2>Competion</h2>
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 4)}}
+				<h3>{{question.question_text}}</h3>
+				<table>
+				<tr>
+					<th>Player</th>
+					<th>Answer</th>
+					{{!-- <th>Date</th> --}}
+				</tr>
+					{{#each question.answer as |answer|}}
+						{{!-- Answer: {{answer.question_id}}<br>
+						Question: {{question.id}}
+						{{#if (eq answer.question_id question.id)}} --}}
+							<tr>
+								<td><a href="player/{{answer.user_id.id}}">{{answer.user_id.first_name}} {{answer.user_id.last_name}}</a></td>
+								<td>{{answer.answer}}</td>
+								{{!-- <td>{{answer.updated_at}}</td> --}}
+							</tr>
+						{{!-- {{/if}} --}}
+					{{/each}}
+				</table>
+				<br><br>
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<div class="category-long-answers">
+		<h2>Training</h2>
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 5)}}
+				<h3>{{question.question_text}}</h3>
+				<table>
+				<tr>
+					<th>Player</th>
+					<th>Answer</th>
+					{{!-- <th>Date</th> --}}
+				</tr>
+					{{#each question.answer as |answer|}}
+						{{!-- Answer: {{answer.question_id}}<br>
+						Question: {{question.id}}
+						{{#if (eq answer.question_id question.id)}} --}}
+							<tr>
+								<td><a href="player/{{answer.user_id.id}}">{{answer.user_id.first_name}} {{answer.user_id.last_name}}</a></td>
+								<td>{{answer.answer}}</td>
+								{{!-- <td>{{answer.updated_at}}</td> --}}
+							</tr>
+						{{!-- {{/if}} --}}
+					{{/each}}
+				</table>
+				<br><br>
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<div class="category-long-answers">
+		<h2>Social</h2>
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 6)}}
+				<h3>{{question.question_text}}</h3>
+				<table>
+				<tr>
+					<th>Player</th>
+					<th>Answer</th>
+					{{!-- <th>Date</th> --}}
+				</tr>
+					{{#each question.answer as |answer|}}
+						{{!-- Answer: {{answer.question_id}}<br>
+						Question: {{question.id}}
+						{{#if (eq answer.question_id question.id)}} --}}
+							<tr>
+								<td><a href="player/{{answer.user_id.id}}">{{answer.user_id.first_name}} {{answer.user_id.last_name}}</a></td>
+								<td>{{answer.answer}}</td>
+								{{!-- <td>{{answer.updated_at}}</td> --}}
+							</tr>
+						{{!-- {{/if}} --}}
+					{{/each}}
+				</table>
+				<br><br>
+			{{/if}}
+		{{/each}}
+	</div>
+
+</div>

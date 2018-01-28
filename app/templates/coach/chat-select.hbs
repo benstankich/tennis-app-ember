@@ -1,0 +1,9 @@
+<h1>Player Chat</h1>
+<p class="center">Select a player to chat with</p>
+<br>
+
+<ul class="chat-list">
+{{#each model as |player|}}
+	<li><a href="chat/{{player.id}}"><img src="/assets/images/icons/profile.svg" alt=""><span>{{player.first_name}} {{player.last_name}}</span></a></li>
+{{/each}}
+</ul>

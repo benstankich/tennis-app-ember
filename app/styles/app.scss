@@ -1,0 +1,778 @@
+@import "basic/variables";
+@import "basic/mixins";
+@import "basic/reformat";
+@import "basic/backbone";
+// @import 'ember-basic-dropdown';
+
+
+// @import "sections/";
+
+body {
+	// @include span(8 of 12);
+	background: $white;
+	color: $lessblack;
+
+	p {
+		a {
+			color: $green;
+		}
+	}
+}
+
+.nav {
+	.menu {
+		width: auto;
+		background: $green;
+		color: $white;
+	    padding: 0.75rem 0 0.75rem 1rem;
+
+	    @include clear-after;
+
+	    @include respond(580px) {
+	    	padding: 0.35rem 0.75rem;
+	    }
+
+	    .logo {
+			// text-transform: uppercase;
+			font-size: 1.4rem;
+			letter-spacing: 1px;
+			font-weight: 600;
+			// margin-top: 0.25rem;
+			display: inline-block;
+			width: 8rem;
+			float: left;
+			font-family: $logo;
+			margin-top: 0.2rem;
+
+			@include respond(580px) {
+				// width:
+			}
+
+			// @include respond(500px) {
+			// 	width: 6rem;
+			// 	font-size: 1.4rem;
+			// 	margin-top: 0.55rem;
+			// }
+		}
+
+		ul {
+			@include plainul;
+			float: left;
+			display: inline-block;
+			margin: 0;
+			margin-top: 0.2rem;
+
+			&.left {
+				width: 12.5rem;
+			}
+			&.right {
+				// width: 11.75rem;
+				margin-right: 0.25rem;
+			}
+
+			@include respond(580px) {
+				// margin-bottom: 0.4rem;
+				width: auto;
+				margin-top: 0.25rem;
+			}
+
+			.coach {
+				margin-top: -0.25rem;
+			}
+			.player {
+				display: none;
+			}
+
+			li {
+				display: inline-block;
+				margin-right: 1rem;
+				font-weight: 500;
+				letter-spacing: 0.5px;
+				float: left;
+
+				@include respond(580px) {
+					font-size: 1.1rem;
+					margin: 0.1rem 0 0.2rem 0;
+					margin-right: 1rem;
+				}
+
+				&:last-of-type {
+					margin-right: 0;
+				}
+			}
+			.login {
+				background: lighten($green,7);
+				padding: 0.3rem 0.75rem;
+				@include border-radius(5px);
+				margin-right: 1rem;
+				margin-top: 0.2rem;
+
+				@include respond(580px) {
+					font-size: 0.9rem;
+					padding: 0.2rem 0.5rem;
+					margin-right: 0.75rem;
+				}
+			}
+			.signup {
+				@extend .login;
+				// margin-right: 0.5rem;
+			}
+		}
+		ul.right {
+			// width: 14rem;
+			float: right;
+			text-align: right;
+			margin-top: -0.3rem;
+			font-size: 1rem;
+			// margin-bottom: -0.1rem;
+			// margin: 0;
+			height: 2.2rem;
+
+			@include respond(580px) {
+				margin-bottom: 0rem;
+				margin-top: 0rem;
+				// width: 12rem;
+			}
+
+			.menubuttons {
+				background: $white;
+				// @include border-radius(5px);
+				@include border-radius(50px);
+
+				&:hover {
+					background: lighten($green,7);
+				}
+
+				img {
+					// height: 1.4rem;
+					// padding: 0.4rem 0.43rem;
+					height: 1.4rem;
+					width: 1.4rem;
+					padding: 0.5rem 0.55rem 0.3rem;
+
+					@include respond(580px) {
+					    padding: 0.5rem 0.6rem 0.4rem;
+					}
+				}
+
+				@include respond(580px) {
+				    // height: 2.1rem;
+				    // margin-bottom: -0.75rem;
+				}
+			}
+		}
+	}
+	.navdropdown {
+		right: 0;
+	    position: absolute;
+
+		ul.notifications {
+			width: 250px;
+			@include plainul;
+			border: 1px solid $gray;
+			background: $white;
+			@include border-radius(3px);
+			padding: 1rem;
+			margin: 0;
+			float: right;
+			margin: 1rem 1rem 0 0;
+
+			h3 {
+				margin: 0;
+			}
+
+			li {
+				clear: left;
+				margin-top: 1rem;
+
+				img {
+					float: left;
+					margin: 0 1rem 1rem 0;
+				}
+				h4 {
+					margin: 0 auto;
+					font-size: 0.8rem;
+				}
+				p {
+					margin: 0 auto;
+					font-size: 0.8rem;
+					line-height: 1rem;
+				}
+			}
+		}
+		ul.profile {
+			// width: 100px;
+			@include plainul;
+			border: 1px solid $gray;
+			background: $white;
+			@include border-radius(3px);
+
+			margin: 0;
+			float: right;
+			margin: 1rem 1rem 0 0;
+
+			li {
+				padding: 0.5rem 0;
+				border-bottom: 1px solid $gray;
+
+				&:first-of-type {
+					background: $gray;
+				}
+
+				a {
+					padding: 0 0.75rem;
+				}
+
+				&:last-of-type {
+					border-bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+
+.player-answer-area {
+	width: 600px;
+	margin: 0 auto;
+
+	@include respond(650px) {
+		width: auto;
+	}
+
+	h2 {
+		margin: 2rem 0 1.5rem 0;
+	}
+}
+ol.player-answer {
+	@include plainul;
+	// border: 1px solid $gray;
+	// background: $white;
+	// @include border-radius(3px);
+	// padding: 1rem 1rem 1rem 2rem;
+	// padding-left: 1rem;
+	margin-bottom: 3rem;
+
+	li {
+		border: 1px solid $gray;
+		@include border-radius(3px);
+		// padding: 1.2rem 1.4rem;
+		// width: 50%;
+		margin: 0 0 2rem 0;
+
+		// @include respond(650px) {
+		// 	width: auto;
+		// }
+
+		.question-text {
+			font-weight: 600;
+			// font-size: 1.2rem;
+			color: lighten($black,25);
+			padding: 1rem 1.2rem;
+			background: lighten($gray,8);
+			border-bottom: 1px solid $gray;
+		}
+		.options {
+			display: none;
+		}
+		.answer {
+			// margin-top: 1rem;
+			padding: 1.4rem 1.2rem 1.2rem 1.2rem;
+
+			label {
+				padding-right: 1.4rem;
+				display: none;
+			}
+			input[type=text] {
+				// padding: 0.5rem;
+				border: 0;
+				border-bottom: 2px solid $gray;
+				padding-bottom: 5px;
+				font-size: 1rem;
+				width: 100%;
+
+				// &[value=""] {
+				// 	opacity: 0.8;
+				// }
+
+				&:hover {
+					// cursor: pointer;
+					// border: 1px solid $green;
+				}
+
+				&:focus {
+					outline: none;
+					// cursor: text;
+					// border: 1px solid $green;
+					border-bottom: 2px solid $green;
+					// padding-bottom: 6px;
+				}
+			}
+			input[type=radio] {
+				font-size: 1rem;
+
+				&:focus {
+					outline: none;
+				}
+			}
+			// input {
+			// 	padding: 0.5rem;
+			// 	border: 1px solid $gray;
+			// 	@include border-radius(3px);
+			// 	font-size: 1rem;
+
+			// 	&:hover {
+			// 		cursor: pointer;
+			// 		border: 1px solid $green;
+			// 	}
+
+			// 	&:focus {
+			// 		outline: none;
+			// 		cursor: text;
+			// 		border: 1px solid $green;
+			// 	}
+			// }
+		}
+	}
+}
+
+.question-wrapper {
+	width: 600px;
+	margin: 0 auto;
+
+	@include respond(650px) {
+		width: auto;
+	}
+}
+
+.standard-wrapper {
+	width: 600px;
+	margin: 0 auto;
+
+	@include respond(650px) {
+		width: auto;
+	}
+}
+
+.qa-set {
+	border: 1px solid $gray;
+	@include border-radius(3px);
+	margin: 0 0 2rem 0;
+
+	// @include respond(650px) {
+	// 	width: auto;
+	// }
+
+	.question {
+		font-weight: 600;
+		// font-size: 1.2rem;
+		color: lighten($black,25);
+		padding: 1rem 1.2rem;
+		background: lighten($gray,8);
+		border-bottom: 1px solid $gray;
+	}
+	.answer {
+		padding: 1rem;
+	}
+}
+
+.player-card {
+	margin: 0 auto;
+	border: 1px solid $gray;
+	@include border-radius(5px);
+	// width: fit-content;
+	// @include border-box;
+	display: block;
+	max-width: 300px;
+
+	@include respond(400px) {
+		max-width: auto;
+	}
+
+	h2 {
+		background: lighten($gray,8);
+		margin: 0;
+		padding: 1.5rem 1.5rem;
+		text-align: center;
+	}
+	p {
+		margin-bottom: -0.5rem;
+	}
+	ul {
+		@include plainul;
+		padding: 1.5rem;
+		margin: 0;
+
+		li {
+			
+
+			span {
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+
+	@include respond(650px) {
+		overflow-x: scroll;
+	    display: block;
+	    white-space: nowrap;
+	}
+
+	th, td {
+		border: 1px solid $gray;
+		text-align: left;
+		padding: 0.5rem;
+
+		a {
+			color: $green;
+		}
+	}
+
+	// &:after {
+	// 	clear: both;
+	// }
+
+}
+
+.chat-window {
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid $gray;
+	@include border-radius(5px);
+	// padding: 1rem;
+
+	@include respond(650px) {
+		width: auto;
+	}
+
+	#messages {
+		border-bottom: 1px solid $gray;
+		@include clear-after;
+		padding: 1rem;
+
+		.info {
+			text-align: center;
+			color: darken($gray,15);
+		}
+		.message-container {
+			background: $gray;
+			border: 1px solid $gray;
+			width: auto;
+			max-width: 40%;
+			display: block;
+			margin: 1rem;
+			@include border-radius(5px);
+			float: left;
+			clear: both;
+			padding: 0.75rem;
+
+			// https://codepen.io/Founts/pen/gmhcl
+			&:before {
+				content: ' ';
+			    position: relative;
+			    width: 0;
+			    height: 0;
+			    left: -28px;
+			    right: auto;
+			    top: 1px;
+			    bottom: auto;
+			    border: 16px solid;
+			    border-color: $gray transparent transparent transparent;
+		    	margin-right: -28px;
+			}
+
+			&.me {
+				background: $white;
+				border: 1px solid $gray;
+				float: right;
+					&:before {
+						display: none;
+					}
+
+				// &:before {
+				// 	content: ' ';
+				// 	position: relative;
+				// 	width: 0;
+				// 	height: 0;
+				// 	left: auto;
+				// 	right: 30px;
+				// 	bottom: -40px;
+				// 	border: 20px solid;
+				// 	border-color: $gray transparent transparent;
+				// }
+			}
+
+			.username {
+				display: none;
+			}
+			.message {
+				
+			}
+		
+		}
+		
+	}
+	input#chat-input {
+		float: right;
+		clear: both;
+		display: block;
+
+		border: 0;
+		border-bottom: 2px solid $gray;
+		padding-bottom: 5px;
+		font-size: 1rem;
+		width: 90%;
+
+		@include respond(650px) {
+			width: 80%;
+		}
+
+		margin: 2rem;
+
+		&:focus {
+			outline: none;
+			// cursor: text;
+			// border: 1px solid $green;
+			border-bottom: 2px solid $green;
+			// padding-bottom: 6px;
+		}
+	}
+}
+
+.select-a-date {
+	width: 260px;
+	margin: 0 auto;
+
+	span {
+		padding-right: 1rem;
+	}
+}
+input.flatpickr-input {
+    width: 8rem;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    // border: 1px solid $gray;
+	border: 0;
+    text-align: center;
+    background: $green;
+	color: $white;
+
+	&:hover {
+		background: darken($green,5);
+	}
+}
+
+
+.new-question {
+	border: 1px solid $gray;
+	padding: 2rem;
+	width: 200px;
+	max-height: 420px;
+	overflow-y: scroll;
+	margin: 0 auto;
+	@include border-radius(5px);
+
+	background: $white;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -133px;
+	margin-top: -224px;
+
+	@include respond(650px) {
+		// max-height: 390px;
+		// overflow-y: scroll;
+		margin-top: -240px;
+	}
+
+	h3 {
+		margin-bottom: 0;
+		// text-align: center;
+
+		&:first-of-type {
+			margin-top: -0.5rem;
+		}
+		// &:last-of-type {
+		// 	margin-bottom: 0;
+		// }
+	}
+
+	.question-1-select, .question-2-select {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.question-section {
+		// width: 260px;
+		// margin-right: 1rem;
+		// display: inline-block;
+		// float: left;
+		// background: $gray;
+		// padding: 1rem;
+
+		// @include respond(650px) {
+		// 	width: auto;
+		// 	display: block;
+		// 	float: none;
+		// }
+
+		// &.second {
+		// 	margin-right: 0;
+		// }
+	}
+
+	.question-dropdown {
+		// height: 0;
+		// transition: height 0.5s;
+
+		// &:hover {
+		// 	height: auto;
+		// 	transition: height 0.5s;
+		// }
+	}
+
+
+	label {
+		display: block;
+	}
+	input, textarea {
+		font-size: 1rem;
+		border: 0;
+		padding: 0.75rem 1rem;
+		margin-bottom: 0.5rem;
+		border: 1px solid $gray;
+
+		&[type=text] {
+			display: block;
+			margin: 0.4rem 0;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&.border {
+			border: 1px solid $gray;
+			margin: 1rem 0 0rem;
+			// width: 200px;
+			display: block;
+		}
+	}
+	textarea {
+		width: auto;
+	}
+
+	#exit {
+		color: $green;
+		text-align: center;
+		// width: 200px;
+		margin: 1rem 50px 0;
+
+		&:hover {
+			cursor: pointer;
+			color: darken($green,8);
+		}
+	}
+}
+
+.modal-blackout {
+	// display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: $black;
+	opacity: 0.3;
+}
+
+.leaderboard {
+	max-width: 800px;
+	width: auto;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+.all-done {
+	@extend .standard-wrapper;
+
+	h1 {
+		margin-top: 0.25rem;
+		// line-height: 300%;
+
+		span {
+			font-size: 300%;
+			line-height: 200%;
+			// margin-top: 1rem;
+			display: block;
+		}
+	}
+
+	img {
+		width: 100%;
+	}
+}
+
+ul.chat-list {
+	@extend .standard-wrapper;
+	@include plainul;
+	width: 280px;
+	padding: 1rem 0;
+	background: $gray;
+
+	// border: 1px solid $gray;
+	@include border-radius(5px);
+
+	li {
+		padding: 1rem;
+		text-align: center;
+		// background: $gray;
+		padding: 2rem;
+
+		// &:nth-of-type(2n) {
+		// 	background: $gray;
+		// }
+	}
+
+	a {
+		color: $green;
+		background: $white;
+		padding: 1rem;
+		@include border-radius(5px);
+
+		img {
+			height: 1.25rem;
+			width: auto;
+			padding-right: 0.5rem;
+		}
+		span {
+			// margin-top: -7px;
+			// display: inline-block;
+		}
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+
+
+p.center {
+	text-align: center;
+}
+h2.center {
+	text-align: center;
+}
+h3.center {
+	text-align: center;
+}
+
+button {
+	-webkit-appearance:none;
+}

@@ -1,0 +1,13 @@
+<h1>Login</h1>
+
+{{!-- <form {{action '/coach/manage' on='submit'}} class="authenticate-box"> --}}
+<form {{action 'authenticate' on='submit'}} class="authenticate-box">
+  {{!-- <label for="identification">Email</label> --}}
+  {{input id='identification' placeholder='Email' value=identification}}
+  {{!-- <label for="password">Password</label> --}}
+  {{input id='password' placeholder='Password' type='password' value=password}}
+  <button type="submit">Login</button>
+  <p>
+	  {{#link-to "signup"}}Sign-up{{/link-to}}
+  </p>
+</form>

@@ -1,0 +1,25 @@
+<h2>This is our load-coaches route</h2>
+{{outlet}}
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>first_name</th>
+		<th>last_name</th>
+		<th>email</th>
+		<th>phone</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+	</tr>
+	{{#each model as |coach|}}
+		<tr>
+			<td>{{coach.id}}</td>
+			<td>{{coach.first_name}}</td>
+			<td>{{coach.last_name}}</td>
+			<td>{{coach.email}}</td>
+			<td>{{coach.phone}}</td>
+			<td>{{coach.created_at}}</td>
+			<td>{{coach.updated_at}}</td>
+		</tr>
+	{{/each}}
+</table>

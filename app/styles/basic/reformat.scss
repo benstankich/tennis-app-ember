@@ -1,0 +1,32 @@
+// General Format
+@charset "utf-8";
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: $tan;
+	font: 400 16px/24px $sans;
+	color: $lessblack;
+}
+a, img {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+	border: 0;
+}
+p {
+	font: 400 16px/24px $sans;
+}
+h1 {
+	font: 24px/32px $sans;
+}
+strong, b {
+	font-weight: 600;
+}
+::selection { @include selection; }
+::-webkit-selection { @include selection; }
+::-moz-selection { @include selection; }
+::-ms-selection { @include selection; }
+::-o-selection { @include selection; }

@@ -1,0 +1,282 @@
+<script>
+	function toggleSave(cat) {
+    	// loop through each li
+		var list = ".player-answer.category-" + cat;
+		// console.log(list+" li");
+
+		// for each li/answer, toggle its save button
+		$(list+" li").each(function(i, li) {
+			// console.log(i);
+			var id = $(li).attr('data-question-id');
+			$(".save-" + id).click();
+		});
+
+		// toggle the next section
+		nextSection(cat+1);
+	}
+	function nextSection(toggle) {
+		if (toggle == 7) {
+			$(".answer-section-6").css('display','none');
+			$(".all-done").css('display','block');
+			$(".question-header").css('display','none');
+		} else {
+			$(".answer-section-"+toggle).css('display','block');
+			$(".answer-section-"+(toggle-1)).css('display','none');
+			$('html,body').animate({ scrollTop: 0 }, '100');
+		}
+	}
+	function previousSection(toggle) {
+		$(".answer-section-"+toggle).css('display','none');
+		if (toggle != 1) {
+			$(".answer-section-"+(toggle-1)).css('display','block');
+		}
+		$('html,body').animate({ scrollTop: 0 }, '100');
+	}
+</script>
+
+<h1 class="question-header" style="display:block;">Today's Questions</h1>
+
+{{!-- <ul>
+	<li><button {{action "filterByCategory(1)"}}>Mental</button></li>
+	<li><button {{action "filterByCategory(2)"}}>Emotional</button></li>
+	<li><button {{action "filterByCategory(3)"}}>Physical</button></li>
+	<li><button {{action "filterByCategory(4)"}}>Training</button></li>
+	<li><button {{action "filterByCategory(5)"}}>Competition</button></li>
+	<li><button {{action "filterByCategory(6)"}}>Social</button></li>
+</ul> --}}
+
+{{!-- Current user: {{currentUser.player.id}}<br>
+Current user: {{player.currentUser.id}}<br>
+Current user: {{currentUser.id}}<br> --}}
+
+<div class="player-answer-area">
+
+	<div class="all-done" style="display:none;">
+		{{#each model.player as |player|}}
+			<h1><span>🎉</span> {{player.first_name}}, you're done for the day!</h1>
+		{{/each}}
+		<img src="/assets/images/celebrate.gif" alt="Celebrate">
+	</div>
+
+	<div class="answer-section-1" style="display:block;">
+		<h2>Mental</h2>
+		<ol class="player-answer category-1">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 1)}}
+				<li data-question-id={{question.id}}>
+					<div class="question-text">
+						{{question.question_text}}
+					</div>
+					{{!-- <div class="options">
+						Options: {{question.options}}<br>
+					</div> --}}
+					{{#if (eq question.options "")}}
+						<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+							<label for="">Answer:</label>
+							<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+						</div>
+					{{else}}
+						<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+							<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+						</div>
+					{{/if}}
+				</li>
+			{{/if}}
+		{{/each}}
+		</ol>
+
+		<div>
+			<button class="button-center" id="save-cat-1" onclick="toggleSave(1)">Next</button>
+			<div class="clearb"></div>
+		</div>
+	</div>
+
+	<div class="answer-section-2" style="display:none;">
+		<h2>Emotional</h2>
+		<ol class="player-answer category-2">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 2)}}	
+				<li data-question-id={{question.id}}>
+					<div class="question-text">
+						{{question.question_text}}
+					</div>
+					{{!-- <div class="options">
+						Options: {{question.options}}<br>
+					</div> --}}
+					{{#if (eq question.options "")}}
+						<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+							<label for="">Answer:</label>
+							<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+						</div>
+					{{else}}
+						<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+							<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+						</div>
+					{{/if}}
+				</li>
+			{{/if}}
+		{{/each}}
+		</ol>
+
+		<div>
+			{{!-- <button class="button-left button-second-option" onclick="previousSection(2)">Previous</button> --}}
+			<button class="button-center" id="save-cat-2" onclick="toggleSave(2)">Next</button>
+			{{!-- <div class="clearb"></div> --}}
+		</div>
+	</div>
+
+	<div class="answer-section-3" style="display:none;">
+		<h2>Physical</h2>
+		<ol class="player-answer category-3">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 3)}}	
+				<li data-question-id={{question.id}}>
+					<div class="question-text">
+						{{question.question_text}}
+					</div>
+					{{!-- <div class="options">
+						Options: {{question.options}}<br>
+					</div> --}}
+					{{#if (eq question.options "")}}
+						<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+							<label for="">Answer:</label>
+							<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+						</div>
+					{{else}}
+						<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+							<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+						</div>
+					{{/if}}
+				</li>
+			{{/if}}
+		{{/each}}
+		</ol>
+
+		<div>
+			{{!-- <button class="button-left button-second-option" onclick="previousSection(3)">Previous</button> --}}
+			<button class="button-center" id="save-cat-3" onclick="toggleSave(3)">Next</button>
+			{{!-- <div class="clearb"></div> --}}
+		</div>
+	</div>
+
+	<div class="answer-section-4" style="display:none;">
+		<h2>Training</h2>
+		<ol class="player-answer category-4">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 4)}}	
+				<li data-question-id={{question.id}}>
+					<div class="question-text">
+						{{question.question_text}}
+					</div>
+					{{!-- <div class="options">
+						Options: {{question.options}}<br>
+					</div> --}}
+					{{#if (eq question.options "")}}
+						<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+							<label for="">Answer:</label>
+							<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+						</div>
+					{{else}}
+						<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+							<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+						</div>
+					{{/if}}
+				</li>
+			{{/if}}
+		{{/each}}
+		</ol>
+
+		<div>
+			{{!-- <button class="button-left button-second-option" onclick="previousSection(4)">Previous</button> --}}
+			<button class="button-center" id="save-cat-4" onclick="toggleSave(4)">Next</button>
+			{{!-- <div class="clearb"></div> --}}
+		</div>
+	</div>
+
+	<div class="answer-section-5" style="display:none;">
+		<h2>Competition</h2>
+		<ol class="player-answer category-5">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 5)}}	
+				<li data-question-id={{question.id}}>
+					<div class="question-text">
+						{{question.question_text}}
+					</div>
+					{{!-- <div class="options">
+						Options: {{question.options}}<br>
+					</div> --}}
+					{{#if (eq question.options "")}}
+						<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+							<label for="">Answer:</label>
+							<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+						</div>
+					{{else}}
+						<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+							<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+						</div>
+					{{/if}}
+				</li>
+			{{/if}}
+		{{/each}}
+		</ol>
+
+		<div>
+			{{!-- <button class="button-left button-second-option" onclick="previousSection(5)">Previous</button> --}}
+			<button class="button-center" id="save-cat-5" onclick="toggleSave(5)">Next</button>
+			{{!-- <div class="clearb"></div> --}}
+		</div>
+	</div>
+
+	<div class="answer-section-6" style="display:none;">
+		<h2>Social</h2>
+		<ol class="player-answer category-6">
+		{{#each model.question as |question|}}
+			{{#if (eq question.category 6)}}	
+				<li data-question-id={{question.id}}>
+					<div class="question-text">
+						{{question.question_text}}
+					</div>
+					{{!-- <div class="options">
+						Options: {{question.options}}<br>
+					</div> --}}
+					{{#if (eq question.options "")}}
+						<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+							<label for="">Answer:</label>
+							<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+						</div>
+					{{else}}
+						<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+							<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+							<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+						</div>
+					{{/if}}
+				</li>
+			{{/if}}
+		{{/each}}
+		</ol>
+
+		<div>
+			{{!-- <button class="button-left button-second-option" onclick="previousSection(6)">Previous</button> --}}
+			<button class="button-center" id="save-cat-6" onclick="toggleSave(6)">Done for the day!</button>
+			{{!-- <div class="clearb"></div> --}}
+		</div>
+	</div>
+
+</div>
+
+{{#each model.question as |question index|}}
+	{{#unless (eq question.category 7)}}
+		<button class="save-{{question.id}}" {{action "saveAnswer" question.id}} style="display:none;">Save Answer to {{question.id}}</button>
+	{{/unless}}
+{{/each}}

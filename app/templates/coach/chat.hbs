@@ -1,0 +1,16 @@
+{{#each model.player as |player|}}
+	<h1>Chat with {{player.first_name}} {{player.last_name}}</h1>
+	<div id="chat-data-player-id" data-player-id="{{player.id}}"></div>
+{{/each}}
+
+{{#each model.coach as |coach|}}
+	<div id="chat-data-username" data-username="{{coach.first_name}} {{coach.last_name}}"></div>
+{{/each}}
+
+<div class="chat-window">
+	<div id="messages"></div>
+	<input id="chat-input" type="text" placeholder="Reply" autofocus/>
+	<div class="clearb"></div>
+</div>
+
+<script src="../../assets/scripts/chat.js"></script>

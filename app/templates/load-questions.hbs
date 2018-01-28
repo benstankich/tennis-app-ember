@@ -1,0 +1,31 @@
+<h2>This is our load-questions route</h2>
+{{outlet}}
+
+<table>
+	<tr>
+		<th>id</th>
+		<th>category</th>
+		<th>age_range</th>
+		<th>gender</th>
+		<th>question_type</th>
+		<th>options</th>
+		<th>question_text</th>
+		<th>coach</th>
+		<th>created_at</th>
+		<th>updated_at</th>
+	</tr>
+	{{#each model as |question|}}
+		<tr>
+			<td>{{question.id}}</td>
+			<td>{{question.category}}</td>
+			<td>{{question.age_range}}</td>
+			<td>{{question.gender}}</td>
+			<td>{{question.question_type}}</td>
+			<td>{{question.options}}</td>
+			<td>{{question.question_text}}</td>
+			<td>{{question.user_id.first_name}} {{question.user_id.last_name}}</td>
+			<td>{{question.created_at}}</td>
+			<td>{{question.updated_at}}</td>
+		</tr>
+	{{/each}}
+</table>

@@ -1,0 +1,316 @@
+<script>
+	$(document).ready(function() {
+		$('.question-1-select').click(function() {
+			if ($('.question-dropdown-1').css('display') === 'block') {
+				$('.question-dropdown-1').css('display','none');
+			} else {
+				$('.question-dropdown-1').css('display','block');
+			}
+		});
+		$('.question-2-select').click(function() {
+			if ($('.question-dropdown-2').css('display') === 'block') {
+				$('.question-dropdown-2').css('display','none');
+			} else {
+				$('.question-dropdown-2').css('display','block');
+			}
+		});
+		$('#multichoice').click(function() {
+			$('.question-dropdown-3').css('display','block');
+		});
+		$('#free-response').click(function() {
+			$('.question-dropdown-3').css('display','none');
+		});
+		$('.add-question-button').click(function() {
+			$('.modal-blackout').css('display','block');
+			$('.new-question').css('display','block');
+		});
+		$('#exit').click(function() {
+			$('.modal-blackout').css('display','none');
+			$('.new-question').css('display','none');
+		});
+		$('.add-question-button').click(function() {
+			$('.new-question').data('cat', $(this).attr('data-cat'));
+			$('.save-question').css('display','none');
+			$('.save-question-'+ $(this).attr('data-cat') ).css('display','block');
+		});
+	});
+</script>
+
+<h1>Manage Questions</h1>
+
+<div class="modal-blackout" style="display: none;"></div>
+<div class="new-question" style="display: none;" data-cat="">
+	<h3>Create a New Question</h3>
+
+	{{!-- <label for="">Question Text</label> --}}
+	<textarea id="question-text" type="text" placeholder="Question Text" class="border" rows="3"></textarea>
+
+	<br>
+
+		<label for="age-range" class="question-1-select">Age range &#9662;</label>
+		<div class="question-dropdown question-dropdown-1" style="display: none;">
+			<input type="radio" id="age-range-1" name="age-range" value="1"> 10-12<br>
+			<input type="radio" id="age-range-2" name="age-range" value="2"> 13-15<br>
+			<input type="radio" id="age-range-3" name="age-range" value="3"> 16-18<br>
+			<input type="radio" id="age-range-4" name="age-range" value="4" checked> All<br>
+		</div>
+		<br>
+
+		<label for="gender" class="question-2-select">Gender &#9662;</label>
+		<div class="question-dropdown question-dropdown-2" style="display: none;">
+			<input type="radio" id="gender-1" name="gender" value="1"> Male<br>
+			<input type="radio" id="gender-2" name="gender" value="2"> Female<br>
+			<input type="radio" id="gender-3" name="gender" value="3" checked> Both<br>
+		</div>
+		<br>
+
+		<label for="answer-type">Answer type</label>
+		<input type="radio" id="free-response" name="answer-type" value="1"> Free response<br>
+		<input type="radio" id="multichoice" name="answer-type" value="2"> Multiple choice<br>
+
+		<br>
+
+		<div class="question-dropdown question-dropdown-3" style="display: none;">
+			<label for="" >Answer Options</label>
+			{{!-- <label for="" ></label> --}}
+			<input type="text" id="answer-option-1" placeholder="Best answer">
+			{{!-- <label for="" ></label> --}}
+			<input type="text" id="answer-option-2" placeholder="Average answer">
+			{{!-- <label for="" ></label> --}}
+			<input type="text" id="answer-option-3" placeholder="Worst answer"><br>
+		</div>
+
+		<button class="button-full save-question save-question-1" {{action "saveQuestion" 1}} style="display: none;">Create question</button>
+		<button class="button-full save-question save-question-2" {{action "saveQuestion" 2}} style="display: none;">Create question</button>
+		<button class="button-full save-question save-question-3" {{action "saveQuestion" 3}} style="display: none;">Create question</button>
+		<button class="button-full save-question save-question-4" {{action "saveQuestion" 4}} style="display: none;">Create question</button>
+		<button class="button-full save-question save-question-5" {{action "saveQuestion" 5}} style="display: none;">Create question</button>
+		<button class="button-full save-question save-question-6" {{action "saveQuestion" 6}} style="display: none;">Create question</button>
+		<button class="button-full save-question save-question-7" {{action "saveQuestion" 7}} style="display: none;">Create question</button>
+		<div id="exit">Nevermind</div>
+	<div class="clearb"></div>
+</div>
+
+<h3>Initial Profile Questions</h3>
+<ul class="deck manage-questions social category-7">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 7)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="7">Add question</a>
+<br><br><br>
+
+<h3>Mental</h3>
+<ul class="deck manage-questions mental category-1">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 1)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="1">Add question</a>
+<br><br><br>
+
+<h3>Emotional</h3>
+<ul class="deck manage-questions emotional category-2">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 2)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="2">Add question</a>
+<br><br><br>
+
+<h3>Physical</h3>
+<ul class="deck manage-questions physical category-3">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 3)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="3">Add question</a>
+<br><br><br>
+
+<h3>Training</h3>
+<ul class="deck manage-questions training category-4">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 4)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="4">Add question</a>
+<br><br><br>
+
+<h3>Competition</h3>
+<ul class="deck manage-questions competition category-5">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 5)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="5">Add question</a>
+<br><br><br>
+
+<h3>Social</h3>
+<ul class="deck manage-questions social category-6">
+	{{#each model as |question index|}}
+		{{#if (eq question.category 6)}}
+			<li class="question-{{question.id}}" style="display:list-item;" data-category="{{question.category}}" data-order="{{question.question_order}}" data-question-id={{question.id}}>
+		        <div class="unedited-question" style="display: block;">
+		            <a class="edit" href="javascript:void();" {{action "toggleEditQuestion" question.id}}>Edit</a>
+		            <label class="number">{{index}}</label>
+		            <div class="question">{{question.question_text}}</div>
+		        </div>
+
+		        <div class="edit-question" style="display: none;">
+		            <a class="delete" href="javascript:void();" {{action "deleteQuestion" question.id}}>Delete</a>
+		            <label class="number">{{index}}</label>
+		            <input class="question" type="text" size="200" value="{{question.question_text}}">
+		            <a class="save" href="javascript:void();" {{action "editQuestion" question.id}}>Save</a>
+		        </div>
+		    </li>
+	    {{/if}}
+	{{/each}}
+</ul>
+<a href="javascript:void();" class="add-question-button button" data-cat="6">Add question</a>
+<br><br><br>
+
+
+{{!-- <button class="reset-1" {{action "reorderQuestions" 1}}></button>
+<button class="reset-2" {{action "reorderQuestions" 2}}></button>
+<button class="reset-3" {{action "reorderQuestions" 3}}></button>
+<button class="reset-4" {{action "reorderQuestions" 4}}></button>
+<button class="reset-5" {{action "reorderQuestions" 5}}></button>
+<button class="reset-6" {{action "reorderQuestions" 6}}></button> --}}
+
+{{#each model as |question index|}}
+	<button class="reset-{{question.id}}" {{action "reorderQuestions" question.id}} style="display:none;"></button>
+{{/each}}
+
+
+<div class="clearb"></div>
+
+{{outlet}}
+
+<script>
+    $(document).ready(function() {
+        // $( ".deck" ).sortable();
+        $( ".deck" ).sortable({
+		    stop: function( event, ui ) {
+		    	// loop through each
+				var list = ".deck.category-" + ui.item.attr('data-category');
+				// console.log(list+" li");
+				$(list+" li").each(function(i, li) {
+					// console.log(i);
+					$(li).attr('data-order', i+1);
+				});
+				// tell controller to persist the new order in the changed category question ids
+				$(list+" li").each(function(i, li) {
+					// console.log(i);
+					var id = $(li).attr('data-question-id');
+					$(".reset-" + id).click();
+				});
+				// $(".reset-"+ ui.item.attr('data-category') ).click();
+				// Ember.run.reorderQuestions(1);
+		    }
+		});
+		// $( ".deck" ).on( "sortover", function( event, ui ) {
+		// 	// loop through each
+		// 	var list = ".deck.category-" + ui.item.attr('data-category');
+		// 	// console.log(list+" li");
+		// 	$(list+" li").each(function(i, li) {
+		// 		console.log(i);
+		// 		$(li).attr('data-order', i);
+		// 	});
+		// 	// console.log('Changed: '+ui.item.attr('data-category'));
+
+		// 	// tell controller to persist the new order in the changed category
+		// 	// $(".reset-"+ ui.item.attr('data-category') ).click();
+		// } );
+        // $( "#sortable" ).disableSelection();
+    });
+</script>

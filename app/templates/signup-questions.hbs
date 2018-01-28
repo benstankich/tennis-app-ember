@@ -1,0 +1,58 @@
+<h1>Welcome to Offcourt, {{#each model.player as |player|}}{{player.first_name}} {{player.last_name}}{{/each}}!</h1>
+<p>To get started, please answer these intial questions</p>
+
+<div class="player-answer-area">
+
+	{{!-- <h2>To get started, please answer these intial questions</h2> --}}
+	<ol class="player-answer">
+	{{#each model.question as |question|}}
+		<li data-question-id={{question.id}}>
+			<div class="question-text">
+				{{question.question_text}}
+			</div>
+			<div class="options">
+				Options: {{question.options}}<br>
+			</div>
+			{{#if (eq question.options "")}}
+				<div class="answer" data-input-type="text" id="answer-container-{{question.id}}">
+					<label for="">Answer:</label>
+					<input type="text" placeholder="Answer" id="answer-{{question.id}}">
+				</div>
+			{{else}}
+				<div class="answer" data-input-type="radio" id="answer-container-{{question.id}}">
+					<input type='radio' id="answer-{{question.id}}-option-1" name="radio-{{question.id}}" value="{{format-radio-answer 1 question.options}}"> {{format-radio-answer 1 question.options}}<br>
+					<input type='radio' id="answer-{{question.id}}-option-2" name="radio-{{question.id}}" value="{{format-radio-answer 2 question.options}}"> {{format-radio-answer 2 question.options}}<br>
+					<input type='radio' id="answer-{{question.id}}-option-3" name="radio-{{question.id}}" value="{{format-radio-answer 3 question.options}}"> {{format-radio-answer 3 question.options}}<br>
+				</div>
+			{{/if}}
+		</li>
+	{{/each}}
+	</ol>
+
+	<div>
+		<button class="button-center" id="save-cat-1" onclick="toggleSave()">Save</button>
+		<div class="clearb"></div>
+	</div>
+
+</div>
+
+{{#each model.question as |question index|}}
+	{{#if (eq question.category 7)}}
+		<button class="save-{{question.id}}" {{action "saveAnswer" question.id}} style="display:none;">Save Answer to {{question.id}}</button>
+	{{/if}}
+{{/each}}
+
+<script>
+	function toggleSave() {
+    	// loop through each li
+		var list = ".player-answer";
+		// console.log(list+" li");
+
+		// for each li/answer, toggle its save button
+		$(list+" li").each(function(i, li) {
+			var id = $(li).attr('data-question-id');
+			console.log(id);
+			$(".save-" + id).click();
+		});
+	}
+</script>

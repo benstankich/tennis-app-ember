@@ -1,5 +1,99 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<div class="nav">
+    <div class="menu">
+        {{#if (eq currentUser.player.is_coach 1)}}
+            <a href="/coach" class="logo">Offcourt</a>
+        {{else}}
+            <a href="/player" class="logo">Offcourt</a>
+        {{/if}}
+        <ul class="right">
+            {{!-- <li class="menubuttons notifications">
+                <a href="javascript:void();" onclick="showNotifications();">
+                    <img src="/assets/images/icons/notifications.svg" alt="Notifications">
+                </a>
+            </li>
+            <li class="menubuttons profile">
+                <a href="javascript:void();" onclick="showProfile();">
+                    <img src="/assets/images/icons/profile.svg" alt="Profile">
+                </a>
+            </li> --}}
+            {{!-- <li class="signup">
+                <a {{action 'invalidateSession'}}>Logout</a>
+            </li> --}}
 
-{{outlet}}
+            <!-- Shown only logged in/out -->
+            {{#if session.isAuthenticated}}
+                {{!-- <li class="menubuttons notifications">
+                    <a href="javascript:void();" onclick="showNotifications();">
+                        <img src="/assets/images/icons/notifications.svg" alt="Notifications">
+                    </a>
+                </li> --}}
+                <li class="menubuttons profile">
+                    <a href="javascript:void();" onclick="showProfile();">
+                        <img src="/assets/images/icons/profile.svg" alt="Profile">
+                    </a>
+                </li>
+            {{else}}
+                <li class="signup">
+                    {{#link-to 'login'}}Login{{/link-to}}
+                </li>
+            {{/if}}
+
+        </ul>
+        <ul class="left">
+            {{#if (eq currentUser.player.is_coach 1)}}
+                <!-- Coach -->
+                <li>
+                    <a href="/coach/review">Review</a>
+                    {{!-- {{#link-to "coach/review"}}Review{{/link-to}} --}}
+                </li>
+                <li>
+                    <a href="/coach/manage">Manage</a>
+                </li>
+                <li>
+                    <a href="/coach/chat-select">Chat</a>
+                </li>
+            {{else}}
+                <!-- Player -->
+                <li>
+                    <a href="/player/review">Review</a>
+                </li>
+                <li>
+                    <a href="/player/chat">Chat</a>
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+    <div class="navdropdown">
+        {{!-- <ul class="notifications" id="notificationsdropdown" style="display: none;">
+            <h3>Notifications</h3>
+            <li>
+                <img src="http://via.placeholder.com/50x50/eeeeee/eeeeee" alt="">
+                <h4>Riley Shaffer</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </li>
+            <li>
+                <img src="http://via.placeholder.com/50x50/eeeeee/eeeeee" alt="">
+                <h4>Caleb Stephan</h4>
+                <p>Voluptas architecto magni excepturi nulla molestiae dolorum cupiditate.</p>
+            </li>
+            <li>
+                <img src="http://via.placeholder.com/50x50/eeeeee/eeeeee" alt="">
+                <h4>Becca Moore</h4>
+                <p>Itaque accusantium laborum quaerat corporis dolore est quae eum laudantium.</p>
+            </li>
+        </ul> --}}
+        <ul class="profile" id="profiledropdown" style="display: none;">
+                <li><a href="/coach/profile">{{currentUser.player.first_name}} {{currentUser.player.last_name}}</a></li>
+            {{#if (eq currentUser.player.is_coach 1)}}
+                <li><a href="/coach/profile">Profile</a></li>
+            {{else}}
+                <li><a href="/player/profile">Profile</a></li>
+            {{/if}}
+            <li><a href="" {{action 'invalidateSession'}}>Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="wrap">
+    {{outlet}}
+</div>

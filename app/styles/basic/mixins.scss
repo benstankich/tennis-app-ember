@@ -1,0 +1,116 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin border-box {
+	box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+@mixin selection {
+	background: $lessblack;
+	color: $white;
+	// text-shadow: 3px 3px $black;
+}
+@mixin wrap {
+	max-width: 1800px; //1200px usually like all others
+	width: 94%;
+	margin: 0 auto;
+	padding: 4% 0;
+}
+@mixin sectionheading($color, $padding) {
+    font-size: 3em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: $padding;
+    color: $color;
+    line-height: 72%;
+    margin: 0;
+	letter-spacing: 7px;
+}
+@mixin mobilepop {
+	float: left;
+	position: fixed;
+	top: 0%;
+	left: 0;
+	background: $white;
+	width: 100%;
+	z-index: 1000;
+	height: 100%;
+	margin: 0 0 0 0;
+	padding: 0;
+	color: $lessblack;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+@mixin button {
+	background: $white;
+	color: $black;
+}
+@mixin buttonhover {
+	background: $darktan;
+	color: $white;
+}
+@mixin plainul {
+    padding: 0;
+    list-style-type: none
+}
+
+
+// Screen Sizes
+$break-small: 700px;
+// $break-large: 1024px;
+
+// Responsive
+@mixin respond($size) {
+    @if $size == mobile {
+        @media screen and (max-width: $break-small) { @content; }
+    }
+
+    @if $size != mobile {
+        @media screen and (max-width: $size) { @content; }
+    }
+}
+// @include respond(mobile) {  }
+
+@mixin default-transition {
+	-webkit-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+@mixin clear-after {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@mixin default-button {
+	padding: 0.5rem 1rem;
+	@include border-radius(5px);
+	font-weight: 600;
+	background: $green;
+	color: $white;
+	cursor: pointer;
+	-webkit-appearance:none;
+
+	border: 0;
+	font-size: 1rem;
+	padding: 0.75rem 1rem;
+	-webkit-appearance: none;
+	// display: block;
+	@include border-box;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		background: darken($green,5);
+	}
+}

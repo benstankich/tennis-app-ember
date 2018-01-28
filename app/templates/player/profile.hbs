@@ -1,0 +1,30 @@
+{{#each model.player as |player|}}
+	<div class="player-card">
+		{{!-- <img src="http://via.placeholder.com/200x200?text=Placeholder" alt=""><br> --}}
+		<h2>{{player.first_name}} {{player.last_name}}</h2>
+		<ul>
+			{{!-- <li><span>ID: </span>{{player.id}}</li> --}}
+			{{!-- <li><span>User type: </span>Player</li> --}}
+			<li><span>Email: </span>{{player.email}}</li>
+			<li><span>Phone: </span>{{player.phone}}</li>
+			<li><span>Gender: </span>{{#if (eq player.gender 1)}}Male{{else}}Female{{/if}}</li>
+			<li><span>Points: </span>{{player.points}}</li>
+			<li><span>Age: </span>{{player.age}}</li>
+			<li><span>Coach: </span>{{player.coach_id.first_name}} {{player.coach_id.last_name}}</li>
+		</ul>
+	</div>
+{{/each}}
+
+<div class="question-wrapper">
+<h3>Profile Questions</h3>
+	<div class="qa-set">
+		{{#each model.question as |question|}}
+			{{!-- {{#if (eq question.category 7)}} --}}
+				{{#each question.answer as |answer|}}
+					<div class="question">{{question.question_text}}</div>
+					<div class="answer">{{answer.answer}}</div>
+				{{/each}}
+			{{!-- {{/if}} --}}
+		{{/each}}
+	</div>
+</div>
